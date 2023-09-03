@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
-const supermarketProducts = [
+
+app.use(express.json())
+
+let supermarketProducts = [
   {
     id: 1,
     name: 'Apples',
@@ -62,6 +65,25 @@ app.delete('/api/products/:id', (request, response) => {
   const product = supermarketProducts.filter(product => product.id !== id)
   
   response.status(204).end()
+})
+
+app.post('/api/products', (request, response) => {
+  const product = request.body
+
+  const ids = supermarketProducts.map( product => product.id)
+  const LastId = Math.max(...ids)
+
+  const newProduct = {
+    id: LastId + 1,
+    name: product.name,
+    price: product.price,
+    important: typeof product.important !== undefined ? product.important : false, 
+    date: new Date()
+  }
+
+  supermarketProducts = supermarketProducts.concat(newProduct)
+    
+  response.json(newProduct)
 })
 
 const PORT = 3001

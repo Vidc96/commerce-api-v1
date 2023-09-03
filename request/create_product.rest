@@ -1,0 +1,8 @@
+POST http://localhost:3001/api/products 
+Content-Type: application/json
+
+{
+  "name": "Oranges",
+  "price": "2.49 USD",
+  "important": true
+}
