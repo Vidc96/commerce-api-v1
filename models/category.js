@@ -1,12 +1,17 @@
 const mongoose = require('mongoose')
 
 const categoryShema = mongoose.Schema({
-  name: String,
-  image: String,
-  countInStock: {
-    type: Number,
-    required: true
+  name: {
+    type: String,
+    require: true
+  },
+  color: {
+    type: String
+  },
+  icon: {
+    type: String
   }
+  
 })
 
 exports.Category = mongoose.model('Category', categoryShema)
