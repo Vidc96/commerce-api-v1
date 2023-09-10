@@ -15,7 +15,7 @@ router.get(`/`, async (req, res) => {
 })
 
 router.post(`/`, async (req, res) => {
-  const category = await Category.find(req.body.category)
+  const category = await Category.findById(req.body.category)
   if(!category) return res.status(400).send('Invalid Category')
   let product = new Product({
     name: req.body.name,
@@ -27,6 +27,7 @@ router.post(`/`, async (req, res) => {
     category: req.body.category,
     countInStock: req.body.countInStock,
     rating: req.body.rating,
+    numReviews: req.body.numReviews,
     isFeatured: req.body.isFeatured,
   })
 
