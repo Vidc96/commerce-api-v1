@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 const categoryShema = mongoose.Schema({
+  
   name: {
     type: String,
     require: true
@@ -10,8 +11,8 @@ const categoryShema = mongoose.Schema({
   },
   icon: {
     type: String
-  }
-  
+  }  
+
 })
 
 exports.Category = mongoose.model('Category', categoryShema)
