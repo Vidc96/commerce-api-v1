@@ -1,18 +1,19 @@
 const express = require('express')
+const expressJwt = require('express-jwt');
 const app = express()
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
 const cors = require('cors')
-
+require('dotenv/config');
+const authJwt = require('./helpers/jwt')
 app.use(cors())
 app.options('*', cors())
 
 //Middleware
 app.use(bodyParser.json())
 app.use(morgan('tiny'))
-
-require('dotenv/config');
+app.use(authJwt())
 
 //Routes
 const categoriesRoutes = require('./routes/categories')
