@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const userShema = mongoose.Schema({
+const userSchema = new mongoose.Schema({
   name: {
     type: String,
     require: true
@@ -44,12 +44,13 @@ const userShema = mongoose.Schema({
   
 })
 
-userShema.virtual('id').get(function () {
+userSchema.virtual('id').get(function () {
   return this._id.toHexString()
 })
 
-userShema.set('toJSON', {
+userSchema.set('toJSON', {
   virtuals: true,
 })
 
-exports.User = mongoose.model('User', userShema)
+exports.User = mongoose.model('User', userSchema)
+exports.userSchema = userSchema
